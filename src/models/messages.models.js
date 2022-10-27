@@ -1,6 +1,8 @@
 const { DataTypes } = require('sequelize')
 
 const db = require('../utils/database')
+const Conversations = require('./conversations.models')
+const Users = require('./users.models')
 
 const Messages = db.define('messages', {
     id : {
@@ -20,7 +22,11 @@ const Messages = db.define('messages', {
     conversationId : {
         field: 'conversation_id',
         type: DataTypes.UUID,
-        allowNull: false
+        allowNull: false,
+        references: {
+            key: 'id',
+            model: Conversations
+        } //? agregue la relacion de la tabla de conversations a participants, y la exporte
     },
     message: {
         type: DataTypes.TEXT,

@@ -50,7 +50,7 @@ const Users = db.define('users', {
     gender:{
         type: DataTypes.STRING,
     },
-    role:{
+    role:{  //? NO ESTOY SEGURO SI LLEVA ROLE
         type: DataTypes.STRING,
         allowNull: false,
         defaultValue: 'normal'

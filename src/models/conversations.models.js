@@ -1,5 +1,6 @@
 const { DataTypes } = require('sequelize')
 const db = require('../utils/database')
+const Users = require('./users.models')
 
 const Conversations = db.define('conversations', {
     id : {
@@ -11,9 +12,10 @@ const Conversations = db.define('conversations', {
         type: DataTypes.STRING(30),
         allowNull: false
     },
-    image_url: {
+    imageUrl: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        field: 'image_url'
     }, 
     userId: {
         field: 'user_id',
