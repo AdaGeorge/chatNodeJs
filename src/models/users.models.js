@@ -50,24 +50,8 @@ const Users = db.define('users', {
     gender:{
         type: DataTypes.STRING,
     },
-    role:{  //? NO ESTOY SEGURO SI LLEVA ROLE
-        type: DataTypes.STRING,
-        allowNull: false,
-        defaultValue: 'normal'
-    },
     country:{
         type: DataTypes.STRING,
-    },
-    status:{
-        type: DataTypes.STRING,
-        allowNull: false,
-        defaultValue: 'active'
-    },
-    isVerified:{
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-        field: 'is_verified',
-        defaultValue: 'false'
     }
 })
 

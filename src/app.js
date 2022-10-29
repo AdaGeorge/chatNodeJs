@@ -3,7 +3,7 @@ const express = require('express')
 const db = require('./utils/database')
 //? Files
 const {port} = require('./config')
-const initModels = require('./models/InitModels')
+const initModel = require('./models/InitModels')
 
 //? Routes
 const userRouter = require('./users/users.router')
@@ -35,7 +35,7 @@ db.sync()
     })
 
 
-initModels()
+initModel()
 //? Probamos que funcione la conexion 
 app.get('/', (req, res)=>{
     res.status(200).json({

@@ -7,7 +7,6 @@ const initModel = ()=>{
     Users.hasMany(Messages)
     Messages.belongsTo(Users)
 
-
     Users.hasMany(Participants)
     Participants.belongsTo(Users)
 
@@ -20,7 +19,6 @@ const initModel = ()=>{
     Conversations.hasMany(Messages)
     Messages.belongsTo(Conversations)
 
-    
 }
 
 module.exports = initModel

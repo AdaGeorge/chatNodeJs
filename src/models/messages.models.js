@@ -30,7 +30,7 @@ const Messages = db.define('messages', {
         references: {
             key: 'id',
             model: Conversations
-        } //? agregue la relacion de la tabla de conversations a participants, y la exporte
+        } 
     }
    
 })

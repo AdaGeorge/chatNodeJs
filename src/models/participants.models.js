@@ -3,7 +3,7 @@ const db = require('../utils/database')
 const Conversations = require('./conversations.models')
 const Users = require('./users.models')
 
-const Participants = db.define('conversations', {
+const Participants = db.define('participants', {
     id : {
         primaryKey: true, 
         type: DataTypes.UUID,
@@ -17,7 +17,6 @@ const Participants = db.define('conversations', {
             key: 'id',
             model: Conversations
         }
-        //? NO TIENE RELACIÓN CON LA TABLA CONVERSATIONS?, se lo puse pero igaul luego pregunto
     },
     userId: {
         field: 'user_id',
