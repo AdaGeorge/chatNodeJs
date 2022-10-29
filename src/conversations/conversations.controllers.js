@@ -18,7 +18,18 @@ const getAllMyConversations = (id) => {
     return data
 }
 
+const createConversation = async (data) => {
+    const response = await conversationsModel.create({
+        id: uuid.v4(),
+        title: data.title,
+        imageUrl: data.imageUrl,
+        createdBy: data.createdBy
+      })
+      return response
+}
+
 
 module.exports={
-    getAllMyConversations
+    getAllMyConversations,
+    createConversation
 }
