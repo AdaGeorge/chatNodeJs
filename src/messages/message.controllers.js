@@ -25,37 +25,35 @@ const getAllMessages = async (id) => {
   return data;
 };
 
-const getMessagesByConversation = async (conversation_id) => {
-  const data = await Messages.findAll({
-    where: {
-      conversation_id,
-    },
-  });
-  return data;
-}
-;
-const getMessagesByParticipant = async (participant_id) => {
-  const data = await Messages.findAll({
-    where: {
-      participant_id,
-    },
-  });
-  return data;
-};
+// const getMessagesByConversation = async (conversation_id) => {
+//   const data = await Messages.findAll({
+//     where: {
+//       conversation_id,
+//     },
+//   });
+//   return data;
+// }
+// ;
+// const getMessagesByParticipant = async (participant_id) => {
+//   const data = await Messages.findAll({
+//     where: {
+//       participant_id,
+//     },
+//   });
+//   return data;
+// };
 
-const getMessageById = async (id) => {
+const getMessageByIdAndConversation = async (conversationId, messageId) => {
   const data = await Messages.findOne({
     where: {
-      id: id,
-    },
-    attributes: {
-      exclude: ["userId", "updatedAt", "createdAt"],
+      id: messageId,
+      conversationId,
     },
     include: [
       {
-        model: Users,
-        as: "user",
-        attributes: ["id", "firstName", "lastName", "email"],
+        model: Conversations,
+        as: "conversation",
+        attributes: ["id", "title"],
       }
     ],
   });
@@ -73,7 +71,19 @@ const createMessage = async (userId, categoryId, data) => {
   return response;
 };
 
+const deleteMessageByIdAndConversation = async (conversationId, messageId) => {
+  const data = await Messages.destroy({
+    where: {
+      id: messageId,
+      conversationId,
+    }
+  });
+  return data;
+};
+
 module.exports = {
   getAllMessages,
-  createMessage
+  createMessage,
+  getMessageByIdAndConversation,
+  deleteMessageByIdAndConversation
 };

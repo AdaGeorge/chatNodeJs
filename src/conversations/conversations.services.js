@@ -111,6 +111,35 @@ const createMessage = (req, res) =>{
         res.status(400).json({message: 'Message most be filled'})
     }
 }
+
+const getMessageById = (req, res) =>{
+    const {conversationId, messageId} = req.params.id
+    messageControllers.getMessageByIdAndConversation(conversationId, messageId)
+    .then((data) => {
+        res.status(200).json(data)
+    })
+    .catch(err => {
+        res.status(404).json({message: err.message})
+    })
+}
+
+const deleteMessage = (res, res) => {
+    const {conversationId, messageId} = req.params.id
+    messageControllers.deleteMessageByIdAndConversation(conversationId, messageId)
+    .then((data) => {
+        if(data){
+            res.status(204).json()
+        }else{
+            res.status(404).json({message: 'Invalid ID'})
+        }
+    })
+    .catch(err => {
+        res.status(404).json({
+            message: err.message
+        })
+    })
+
+}
    
 module.exports = {
     getAllConversations,
@@ -119,5 +148,7 @@ module.exports = {
     deleteConversationById,
     patchConversationById,
     getAllMessagesFromConversationId,
-    createMessage
+    createMessage,
+    getMessageById,
+    deleteMessage
 }
