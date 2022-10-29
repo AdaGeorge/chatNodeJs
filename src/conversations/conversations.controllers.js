@@ -5,7 +5,7 @@ const Users = require('../models/users.models');
 const getAllMyConversations = (id) => {
     const data = Conversations.findAll({
         where: {
-            id: id
+            userId: id
         },
         include: [
             {
@@ -28,6 +28,16 @@ const createConversation = async (data) => {
       return response
 }
 
+const getConversationById = async (id) => {
+    const data = await Users.findOne({
+        where: {
+          id: id
+        },
+      });
+      return data;
+}
+
+const
 
 module.exports={
     getAllMyConversations,

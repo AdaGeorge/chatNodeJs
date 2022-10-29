@@ -14,7 +14,6 @@ const Conversations = db.define('conversations', {
     },
     imageUrl: {
         type: DataTypes.STRING,
-        allowNull: false,
         field: 'image_url',
         validate: {
             isUrl: true
