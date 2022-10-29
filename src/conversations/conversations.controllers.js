@@ -1,6 +1,4 @@
 const Conversations = require('../models/conversations.models')
-const uuid = require("uuid");
-const { model } = require('../utils/database');
 const Users = require('../models/users.models');
 
 
