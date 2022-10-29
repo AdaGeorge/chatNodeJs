@@ -10,6 +10,10 @@ const Messages = db.define('messages', {
         type: DataTypes.UUID,
         allowNull: false
     },
+    message: {
+        type: DataTypes.TEXT,
+        allowNull: false
+    },
     userId: {
         field: 'user_id',
         type: DataTypes.UUID,
@@ -27,10 +31,6 @@ const Messages = db.define('messages', {
             key: 'id',
             model: Conversations
         } //? agregue la relacion de la tabla de conversations a participants, y la exporte
-    },
-    message: {
-        type: DataTypes.TEXT,
-        allowNull: false
     }
    
 })

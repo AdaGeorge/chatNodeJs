@@ -1,18 +1,24 @@
 const Messages = require("../models/messages.models");
 const uuid = require("uuid");
 const Users = require("../models/users.models");
+const Conversations = require("../models/conversations.models");
 
 
-const getAllMessages = async () => {
+const getAllMessages = async (id) => {
   const data = await Messages.findAll({
-    attributes: {
-      exclude: ["userId"],
+    where: {
+      conversation_id: id
     },
     include: [
       {
         model: Users,
         as: "user",
-        attributes: ["id", "firstName", "lastName", "email"],
+        attributes: ["id", "firstName", "lastName"],
+      },
+      {
+        model: Conversations,
+        as: "conversation",
+        attributes: ["id", "title"]
       }
     ],
   });
@@ -56,18 +62,18 @@ const getMessageById = async (id) => {
   return data;
 };
 
-const createMessage = async (data) => {
+const createMessage = async (userId, categoryId, data) => {
   const newMessage = {
     id: uuid.v4(),
-    title: data.title,
-    content: data.content,
-    userId: data.userId,
-    categoryId: data.categoryId,
+    message: data.message,
+    userId: userId,
+    categoryId: categoryId,
   };
   const response = await Messages.create(newMessage);
   return response;
 };
 
 module.exports = {
-
+  getAllMessages,
+  createMessage
 };
