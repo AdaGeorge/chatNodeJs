@@ -19,7 +19,7 @@ const getAllMyConversations = (id) => {
 }
 
 const createConversation = async (data) => {
-    const response = await Conversations.create({
+    const response = await conversationsModel.create({
         id: uuid.v4(),
         title: data.title,
         imageUrl: data.imageUrl,

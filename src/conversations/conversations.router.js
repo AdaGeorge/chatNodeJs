@@ -1,12 +1,11 @@
 const router = require('express').Router()
-const conversatinServices = require('./conversations.services')
 
 
 // /conversations
 
 router.route('/conversations')
-    .get(passport.authenticate("jwt", { session: false }), conversatinServices.getAllConversations)
-    .post(passport.authenticate("jwt", { session: false }), conversatinServices.postConversation)
+    .get()
+    .post()
 
 // /conversations/:conversation_id
 router.route('/conversations/:conversation_id')
