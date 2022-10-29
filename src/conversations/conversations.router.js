@@ -60,3 +60,6 @@ router
 
 // /conversations/:conversation_id/participants/:participant_id
 // router.route("/:conversation_id/participants/:participant_id").get().delete();
+
+
+module.exports = router
