@@ -8,6 +8,7 @@ const initModels = require('./models/InitModels')
 //? Routes
 const userRouter = require('./users/users.router')
 const authRouter = require('./auth/auth.router')
+const conversationsRouter = require('./conversations/conversations.router')
 
 
 //? Initial configs
@@ -50,6 +51,7 @@ app.get('/', (req, res)=>{
 //? Rutas
 app.use('/api/v1/users', userRouter)
 app.use('/api/v1/auth', authRouter)
+app.use('/api/v1/conversations', conversationsRouter)
 
 
 
