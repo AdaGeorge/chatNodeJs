@@ -123,7 +123,7 @@ const getMessageById = (req, res) =>{
     })
 }
 
-const deleteMessage = (res, res) => {
+const deleteMessage = (req, res) => {
     const {conversationId, messageId} = req.params.id
     messageControllers.deleteMessageByIdAndConversation(conversationId, messageId)
     .then((data) => {
