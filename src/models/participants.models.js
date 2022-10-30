@@ -23,8 +23,8 @@ const Participants = db.define('participants', {
         type: DataTypes.UUID,
         allowNull: false,
         references: {
-            model: Users,
-            key: 'id'
+            key: 'id',
+            model: Users
         }
     }
    

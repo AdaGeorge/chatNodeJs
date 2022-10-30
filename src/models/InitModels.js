@@ -19,6 +19,9 @@ const initModel = ()=>{
     Conversations.hasMany(Messages)
     Messages.belongsTo(Conversations)
 
+    Conversations.hasMany(Participants)
+    Participants.belongsTo(Conversations)
+
 }
 
 module.exports = initModel

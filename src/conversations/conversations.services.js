@@ -34,7 +34,7 @@ const postConversation = (req, res) => {
 }
 
 const getConversationsById = (req, res) => {
-    const id = req.params.id
+    const id = req.params.conversation_id
     conversationsControllers.getConversationById(id)
       .then((data) => {
         res.status(200).json(data)
@@ -46,7 +46,7 @@ const getConversationsById = (req, res) => {
 
 
 const deleteConversationById = (req, res) =>{
-    const id = req.params.id
+    const id = req.params.conversation_id
     conversationsControllers.deleteConversationById(id)
     .then((data) => {
         if(data){
@@ -63,11 +63,11 @@ const deleteConversationById = (req, res) =>{
 }
 
 const patchConversationById = (req,res) => {
-    const id = req.params.id
-    const {title} = req.body
-    conversationsControllers.updateConversation(id, title)
+    const id = req.params.conversation_id
+    const {title, imageUrl} = req.body
+    conversationsControllers.updateConversation(id, {title, imageUrl})
     .then((data) => {
-        if(data){
+        if(data[0]){
             res.status(200).json({message: `Conversation with ID: ${id} updated`})
         }else{
             res.status(404).json({message: 'Invalid ID'})
@@ -84,7 +84,7 @@ const patchConversationById = (req,res) => {
 //? Conversation messages
 
 const getAllMessagesFromConversationId = (req,res) =>{
-    const id = req.params.id
+    const id = req.params.conversation_id
     messageControllers.getAllMessages(id)
     .then((data) => {
         res.status(200).json(data)
@@ -96,10 +96,10 @@ const getAllMessagesFromConversationId = (req,res) =>{
 
 const createMessage = (req, res) =>{
     const userId = req.user.id
-    const conversationId = req.params.id
+    const conversationId = req.params.conversation_id
     const {message} = req.body 
     if(message){
-        messageControllers.createMessage(userId, conversationId, message)
+        messageControllers.createMessage(userId, conversationId, {message})
         .then((data) => {
             res.status(201).json({message: 'Message created succesfully'})
         })
@@ -113,7 +113,8 @@ const createMessage = (req, res) =>{
 }
 
 const getMessageById = (req, res) =>{
-    const {conversationId, messageId} = req.params.id
+    const conversationId = req.params.conversation_id
+    const messageId = req.params.message_id
     messageControllers.getMessageByIdAndConversation(conversationId, messageId)
     .then((data) => {
         res.status(200).json(data)
@@ -124,7 +125,8 @@ const getMessageById = (req, res) =>{
 }
 
 const deleteMessage = (req, res) => {
-    const {conversationId, messageId} = req.params.id
+    const conversationId = req.params.conversation_id
+    const messageId = req.params.message_id
     messageControllers.deleteMessageByIdAndConversation(conversationId, messageId)
     .then((data) => {
         if(data){

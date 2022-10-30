@@ -60,12 +60,12 @@ const getMessageByIdAndConversation = async (conversationId, messageId) => {
   return data;
 };
 
-const createMessage = async (userId, categoryId, data) => {
+const createMessage = async (userId, conversationId, data) => {
   const newMessage = {
     id: uuid.v4(),
     message: data.message,
     userId: userId,
-    categoryId: categoryId,
+    conversationId: conversationId,
   };
   const response = await Messages.create(newMessage);
   return response;

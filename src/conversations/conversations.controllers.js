@@ -1,5 +1,6 @@
 const Conversations = require("../models/conversations.models");
 const Users = require("../models/users.models");
+const uuid = require('uuid')
 
 const getAllMyConversations = (id) => {
   const data = Conversations.findAll({
@@ -22,7 +23,7 @@ const createConversation = async (data) => {
     id: uuid.v4(),
     title: data.title,
     imageUrl: data.imageUrl,
-    createdBy: data.createdBy,
+    userId: data.userId
   });
   return response;
 };
@@ -30,7 +31,7 @@ const createConversation = async (data) => {
 const getConversationById = async (id) => {
   const data = await Conversations.findOne({
     where: {
-      id: id,
+      id: id
     },
   });
   return data;
@@ -39,7 +40,7 @@ const getConversationById = async (id) => {
 const deleteConversationById = async (id) => {
   const data = await Conversations.destroy({
     where: {
-      id: id,
+      id: id
     },
   });
   return data;
